@@ -1,4 +1,4 @@
-package daily_tools
+package lib
 
 import (
 	"encoding/binary"

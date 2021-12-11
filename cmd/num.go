@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	nb "github.com/cao7113/numbase"
+	nb "github.com/cao7113/numbase/lib"
 	"github.com/urfave/cli/v2"
 	"strconv"
 	"strings"
