@@ -33,8 +33,9 @@ func (s *FunSuite) TestParse() {
 }
 
 func (s *FunSuite) TestXOR() {
-	s.Equal(0, 123^123)
-	s.Equal(123, 123^0)
+	// always true
+	//s.Equal(0, 123^123)
+	//s.Equal(123, 123^0)
 
 	s.Run("swap var in-place", func() {
 		x := 123

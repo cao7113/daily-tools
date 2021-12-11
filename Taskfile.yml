@@ -1,12 +1,27 @@
 # https://taskfile.dev
 version: '3'
 tasks:
+  default:
+    deps: [lint, test]
+
+  lint:
+    desc: run lint
+    cmds:
+      - golangci-lint run ./...
+
   test:
     desc: run test
     cmds:
-      - go test ./...
+      - go test -v ./...
 
   install:
     desc: build and install to go/bin
     cmds:
       - go build -o ~/go/bin/tool cmd/*.go
+
+  install-golangci-lint:
+    desc: install golangci-lint as https://golangci-lint.run/usage/install#macos
+    cmds:
+      - |
+        brew tap golangci/tap
+        brew install golangci/tap/golangci-lint
