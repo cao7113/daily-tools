@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	nb "github.com/cao7113/numbase/lib"
+	"github.com/cao7113/dailytools/lib"
 	"github.com/urfave/cli/v2"
 	"strconv"
 	"strings"
@@ -21,7 +21,7 @@ func numCmd() *cli.Command {
 			{
 				Name:    "binary",
 				Aliases: []string{"b", "int"},
-				Usage:   "binary info for signed number(two's complement representation) e.g. numbase binary -- -2",
+				Usage:   "binary info for signed number(two's complement representation) e.g. num binary -- -2",
 				Flags: []cli.Flag{
 					&cli.IntFlag{
 						Name:        "base",
@@ -82,22 +82,22 @@ func numCmd() *cli.Command {
 						str += fmt.Sprintf(" %d(10-based)", n)
 					}
 					fmt.Println(str)
-					bs := nb.GetIntBinString(n, be, !mb, " ")
+					bs := lib.GetIntBinString(n, be, !mb, " ")
 					fmt.Printf("%s (two's complement with %s)\n", bs, ed)
 
 					// for negative two's complement
 					if n < 0 {
 						n = -n // same as n := ^(n - 0x01)
 						fmt.Printf("\n## other-side num: %d\n", n)
-						bs = nb.GetIntBinString(n, be, !mb, " ")
+						bs = lib.GetIntBinString(n, be, !mb, " ")
 						fmt.Printf("bin(big-endian: %t): \n%s\n", be, bs)
 
 						n1 := ^n
-						bs = nb.GetIntBinString(n1, be, !mb, " ")
+						bs = lib.GetIntBinString(n1, be, !mb, " ")
 						fmt.Printf("bin(one's complement with big-endian: %t): \n%s\n", be, bs)
 
 						n2 := n1 + 0x01
-						bs = nb.GetIntBinString(n2, be, !mb, " ")
+						bs = lib.GetIntBinString(n2, be, !mb, " ")
 						fmt.Printf("bin(two's complement with big-endian: %t): \n%s\n", be, bs)
 					}
 
@@ -115,9 +115,9 @@ func numCmd() *cli.Command {
 						return err
 					}
 					bs := strconv.FormatUint(un, 2)
-					chunks := nb.SplitToGroupChunks(bs, 8, '0')
+					chunks := lib.SplitToGroupChunks(bs, 8, '0')
 					hs := strconv.FormatUint(un, 0x10)
-					hChunks := nb.SplitToGroupChunks(hs, 2, '0')
+					hChunks := lib.SplitToGroupChunks(hs, 2, '0')
 
 					fmt.Printf("num: %s\n", num)
 					fmt.Printf("hex: %s\n", strings.Join(hChunks, ""))
@@ -246,7 +246,7 @@ func numCmd() *cli.Command {
 				Usage:   "stat a decimal number",
 				Action: func(c *cli.Context) error {
 					num := c.Args().First()
-					chunks := nb.SplitToGroupChunks(num, 3, 0)
+					chunks := lib.SplitToGroupChunks(num, 3, 0)
 					sNum := strings.Join(chunks, ",")
 					fmt.Printf("num: %s\n"+
 						"len: %d\n"+
@@ -258,7 +258,7 @@ func numCmd() *cli.Command {
 						vNum := strings.TrimLeftFunc(num, func(r rune) bool {
 							return r == '0'
 						})
-						vChunks := nb.SplitToGroupChunks(vNum, 3, 0)
+						vChunks := lib.SplitToGroupChunks(vNum, 3, 0)
 						vsNum := strings.Join(vChunks, ",")
 						fmt.Printf("num: %s\n"+
 							"len: %d\n"+

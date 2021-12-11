@@ -1,4 +1,4 @@
-module github.com/cao7113/numbase
+module github.com/cao7113/dailytools
 
 go 1.17
 
