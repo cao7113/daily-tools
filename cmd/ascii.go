@@ -12,7 +12,7 @@ func asciiCmd() *cli.Command {
 		Aliases: []string{"a"},
 		Usage:   "ascii-code table",
 		Action: func(c *cli.Context) error {
-			fmt.Printf("# ref https://zh.wikipedia.org/wiki/ASCII \n")
+			fmt.Printf("# ASCII Chars https://zh.wikipedia.org/wiki/ASCII \n")
 			for i := 0; i < unicode.MaxLatin1; i++ {
 				rStart := i%0x10 == 0
 				if rStart {

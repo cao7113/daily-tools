@@ -130,7 +130,7 @@ func numCmd() *cli.Command {
 				},
 			}, // unsigned-integer
 			{
-				Name:    "han [char]",
+				Name:    "han",
 				Aliases: []string{"zh"},
 				Usage:   "chinese char table",
 				Flags: []cli.Flag{

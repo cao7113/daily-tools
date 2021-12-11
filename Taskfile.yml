@@ -7,6 +7,7 @@ tasks:
   lint:
     desc: run lint
     cmds:
+      - golangci-lint --version
       - golangci-lint run ./...
 
   test:
@@ -14,6 +15,8 @@ tasks:
     cmds:
       - go test -v ./...
 
+  i:
+    deps: [install]
   install:
     desc: build and install to go/bin
     cmds:
